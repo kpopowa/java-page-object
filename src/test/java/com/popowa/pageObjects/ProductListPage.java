@@ -3,19 +3,22 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-    public class AddProductPage {
+import java.util.Arrays;
+import java.util.Locale;
+import java.util.stream.Collectors;
+
+public class ProductListPage {
         private WebDriver driver;
 
-        public AddProductPage(WebDriver driver) {
+        public ProductListPage(WebDriver driver) {
             this.driver = driver;
+        }
 
-       public void chooseProduct(){
-        driver.get("//input[@type='submit']");
-            }
+        public void addProductToCartByName(String productName) {
+            String[] wordsInLowerCase = productName.toLowerCase(Locale.ROOT).split(" ");
+            String elementId = Arrays.stream(wordsInLowerCase).collect(Collectors.joining("-"));
+            WebElement addToCartButton = driver.findElement(By.id("add-to-cart-" + elementId));
+            addToCartButton.click();
 
-            public void fillLogIn(String login){
-           WebDriver enterUserName = driver.findElement(By.name("user-name"));
-           enterUserName.sendK
-            }
         }
 }
