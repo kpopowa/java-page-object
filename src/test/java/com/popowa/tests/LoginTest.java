@@ -32,6 +32,7 @@ public class LoginTest {
     public void userShouldLoginSuccessfullyWithValidCredentials() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.open();
+        loginPage.isPageLoaded();
         loginPage.fillLogin("standard_user");
         loginPage.fillPassword("secret_sauce");
         loginPage.clickLogin();
@@ -43,10 +44,10 @@ public class LoginTest {
     @Test
     public void userShouldNotLoginSuccessfullyWithNotValidCredentials() {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.open();
-        loginPage.fillLogin("standard_user");
-        loginPage.fillPassword("wrong_password");
-        loginPage.clickLogin();
+        loginPage.open()
+                 .fillLogin("standard_user")
+                 .fillPassword("wrong_password")
+                 .clickLogin();
 
         Assert.assertTrue(loginPage.isDisplayed());
     }

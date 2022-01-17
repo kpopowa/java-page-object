@@ -33,10 +33,12 @@ public class RemoveProductTest {
 
     public void userShouldSuccessfullyRemoveProductFromCart(){
         LoginPage loginPage = new LoginPage(driver);
+        loginPage.isPageLoaded();
         loginPage.logIn("standard_user", "secret_sauce");
 
         ProductListPage productListPage = new ProductListPage(driver);
-        productListPage.addProductToCartByName("Sauce Labs Backpack");
+        productListPage.isPageLoaded()
+                .addProductToCartByName("Sauce Labs Backpack");
 
         WebElement checkCart = driver.findElement(By.xpath("//span[@class='shopping_cart_badge']"));
         Assert.assertEquals(checkCart.getText(),"1");

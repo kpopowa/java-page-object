@@ -33,15 +33,18 @@ public class CheckProductInCartTest {
     public void checkTheProductAddedToCartInCart(){
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.logIn("standard_user", "secret_sauce");
+        loginPage.open()
+                .isPageLoaded()
+                .logIn("standard_user", "secret_sauce");
 
         ProductListPage productListPage = new ProductListPage(driver);
-        productListPage.addProductToCartByName("Sauce Labs Bike Light");
+        productListPage.isPageLoaded()
+                       .addProductToCartByName("Sauce Labs Bike Light");
 
         WebElement checkCart = driver.findElement(By.xpath("//span[@class='shopping_cart_badge']"));
         Assert.assertEquals(checkCart.getText(), "1");
 
-        WebElement CheckCart = driver.findElement(By.xpath("//"));
+       // WebElement CheckCart = driver.findElement(By.xpath("//"));
 
 
 

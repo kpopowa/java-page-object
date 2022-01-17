@@ -31,10 +31,13 @@ public class AddToCartTest {
     @Test
     public void userShouldSuccessfullyAddProductToCart() {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.logIn("standard_user", "secret_sauce");
+        loginPage.isPageLoaded()
+                 .logIn("standard_user", "secret_sauce");
+
 
 
         ProductListPage productListPage = new ProductListPage(driver);
+        productListPage.isPageLoaded();
         productListPage.addProductToCartByName("Sauce Labs Bike Light");
 
         WebElement checkCart = driver.findElement(By.xpath("//span[@class='shopping_cart_badge']"));

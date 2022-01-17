@@ -16,15 +16,18 @@ public class ProductListPage {
             this.driver = driver;
         }
 
-        public void addProductToCartByName(String productName) {
+        public ProductListPage addProductToCartByName(String productName) {
             String[] wordsInLowerCase = productName.toLowerCase(Locale.ROOT).split(" ");
             String elementId = Arrays.stream(wordsInLowerCase).collect(Collectors.joining("-"));
             WebElement addToCartButton = driver.findElement(By.id("add-to-cart-" + elementId));
             addToCartButton.click();
+            return this;
 
         }
-    public void isPageLoaded(){
-        (new WebDriverWait(driver, 20))
-                .until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Products']")));
-    }
+
+        public ProductListPage isPageLoaded(){
+            (new WebDriverWait(driver, 20))
+                    .until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Products']")));
+            return this;
+        }
 }
