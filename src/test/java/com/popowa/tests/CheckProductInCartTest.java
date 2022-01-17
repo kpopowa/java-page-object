@@ -13,7 +13,8 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class AddToCartTest {
+
+public class CheckProductInCartTest {
     private WebDriver driver;
 
     @BeforeTest
@@ -29,24 +30,24 @@ public class AddToCartTest {
     }
 
     @Test
-    public void userShouldSuccessfullyAddProductToCart() {
+    public void checkTheProductAddedToCartInCart(){
+
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.isPageLoaded()
-                 .logIn("standard_user", "secret_sauce");
-
-
+        loginPage.open()
+                .isPageLoaded()
+                .logIn("standard_user", "secret_sauce");
 
         ProductListPage productListPage = new ProductListPage(driver);
-        productListPage.isPageLoaded();
-        productListPage.addProductToCartByName("Sauce Labs Bike Light");
+        productListPage.isPageLoaded()
+                       .addProductToCartByName("Sauce Labs Bike Light");
 
         WebElement checkCart = driver.findElement(By.xpath("//span[@class='shopping_cart_badge']"));
         Assert.assertEquals(checkCart.getText(), "1");
 
-        WebElement cartButton = driver.findElement(By.xpath("//span[@class='shopping_cart_badge]"));
-        cartButton.click();
+       // WebElement CheckCart = driver.findElement(By.xpath("//"));
 
 
 
     }
+
 }

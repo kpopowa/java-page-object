@@ -3,6 +3,8 @@ package com.popowa.pageObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage {
     private WebDriver driver;
@@ -15,18 +17,21 @@ public class LoginPage {
         return driver.findElement(By.xpath("//input[@type='submit']")) != null;
     }
 
-    public void open(){
+    public LoginPage open(){
         driver.get("https://www.saucedemo.com/");
+        return this;
     }
 
-    public void fillLogin(String login) {
+    public LoginPage fillLogin(String login) {
         WebElement enterUsername = driver.findElement(By.name("user-name"));
         enterUsername.sendKeys(login);
+        return this;
     }
 
-    public void fillPassword(String password) {
+    public LoginPage fillPassword(String password) {
         WebElement enterUsername = driver.findElement(By.name("password"));
         enterUsername.sendKeys(password);
+        return this;
     }
 
     public void clickLogin() {
@@ -34,11 +39,18 @@ public class LoginPage {
         pressLogInButton.click();
     }
 
-    public void logIn(String login, String password) {
+    public LoginPage logIn(String login, String password) {
         open();
         fillLogin(login);
         fillPassword(password);
         clickLogin();
+        return this;
 
+    }
+
+    public LoginPage isPageLoaded(){
+        (new WebDriverWait(driver, 20))
+                .until(ExpectedConditions.elementToBeClickable(By.id("login-button")));
+        return this;
     }
 }
