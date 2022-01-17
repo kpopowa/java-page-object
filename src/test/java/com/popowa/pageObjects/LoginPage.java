@@ -3,6 +3,8 @@ package com.popowa.pageObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage {
     private WebDriver driver;
@@ -40,5 +42,10 @@ public class LoginPage {
         fillPassword(password);
         clickLogin();
 
+    }
+
+    public void isPageLoaded(){
+        (new WebDriverWait(driver, 20))
+                .until(ExpectedConditions.elementToBeClickable(By.id("login-button")));
     }
 }

@@ -2,6 +2,8 @@ package com.popowa.pageObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Arrays;
 import java.util.Locale;
@@ -21,4 +23,8 @@ public class ProductListPage {
             addToCartButton.click();
 
         }
+    public void isPageLoaded(){
+        (new WebDriverWait(driver, 20))
+                .until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Products']")));
+    }
 }
