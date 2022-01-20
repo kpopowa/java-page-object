@@ -3,7 +3,9 @@ package com.popowa.tests;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.popowa.pageObjects.LoginPage;
 import com.popowa.pageObjects.ProductListPage;
+import com.popowa.utils.AllureUtils;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.TmsLink;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,7 +30,8 @@ public class AddToCartTest {
         driver.quit();
     }
 
-    @Test
+    @TmsLink("8537")
+    @Test (priority = 1, description = "User Should Successfully Add Product To Cart")
     public void userShouldSuccessfullyAddProductToCart() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.isPageLoaded()
@@ -46,7 +49,7 @@ public class AddToCartTest {
         WebElement cartButton = driver.findElement(By.xpath("//span[@class='shopping_cart_badge]"));
         cartButton.click();
 
-
+        AllureUtils.takeScreenshot(driver);
 
     }
 }
