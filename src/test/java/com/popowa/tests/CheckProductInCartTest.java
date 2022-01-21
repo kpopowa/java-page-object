@@ -29,7 +29,7 @@ public class CheckProductInCartTest {
         driver.quit();
     }
 
-    @Test
+    @Test (priority = 2, description = "Check The Product Added To Cart In Cart")
     public void checkTheProductAddedToCartInCart(){
 
         LoginPage loginPage = new LoginPage(driver);

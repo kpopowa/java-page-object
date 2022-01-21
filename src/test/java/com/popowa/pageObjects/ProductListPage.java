@@ -1,4 +1,5 @@
 package com.popowa.pageObjects;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,8 +16,8 @@ public class ProductListPage {
         public ProductListPage(WebDriver driver) {
             this.driver = driver;
         }
-
-        public ProductListPage addProductToCartByName(String productName) {
+    @Step ("Add product to card by name")
+    public ProductListPage addProductToCartByName(String productName) {
             String[] wordsInLowerCase = productName.toLowerCase(Locale.ROOT).split(" ");
             String elementId = Arrays.stream(wordsInLowerCase).collect(Collectors.joining("-"));
             WebElement addToCartButton = driver.findElement(By.id("add-to-cart-" + elementId));
@@ -24,8 +25,8 @@ public class ProductListPage {
             return this;
 
         }
-
-        public ProductListPage isPageLoaded(){
+    @Step ("Check if the page is loaded")
+    public ProductListPage isPageLoaded(){
             (new WebDriverWait(driver, 20))
                     .until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Products']")));
             return this;

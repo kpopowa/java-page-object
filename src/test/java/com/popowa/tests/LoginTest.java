@@ -1,6 +1,7 @@
 package com.popowa.tests;
 
 import com.popowa.pageObjects.LoginPage;
+import com.popowa.utils.AllureUtils;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -28,7 +29,7 @@ public class LoginTest {
         driver.quit();
     }
 
-    @Test
+    @Test (priority = 3, description = "User should Login Successfully With Valid Credentials")
     public void userShouldLoginSuccessfullyWithValidCredentials() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.open();
@@ -50,5 +51,7 @@ public class LoginTest {
                  .clickLogin();
 
         Assert.assertTrue(loginPage.isDisplayed());
+
+        AllureUtils.takeScreenshot(driver);
     }
 }
